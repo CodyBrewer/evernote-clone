@@ -18,7 +18,7 @@ class SideBarComponent extends Component {
 
    if (notes) {
     return (
-        <div clasName={classes.sidebarContainer}>
+        <div className={classes.sidebarContainer}>
           <Button onClick={this.newNoteBtnClick} className={classes.newNoteBtn}>
             {' '}
             {this.state.addingNote ? 'Cancel' : 'New Note'}
@@ -66,11 +66,12 @@ class SideBarComponent extends Component {
     this.setState({ title: txt });
   };
   newNote = () => {
-    console.log(this.state);
+    this.props.newNote(this.state.title);
+    this.setState({title: null, addingNote: false})
   };
 
-  selectNote = () => console.log('select note');
-  deleteNote = () => console.log('delete note');
+  selectNote = (n, i) => this.props.selectNote(n, i);
+  deleteNote = (note) => this.props.deleteNote(note);
 }
 
 export default withStyles(styles)(SideBarComponent);
