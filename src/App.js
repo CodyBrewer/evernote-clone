@@ -1,4 +1,6 @@
 import React from 'react';
+import SideBarComponent from './sidebar/sidebar';
+import EditorComponent from './editor/editor';
 
 import './App.css';
 
@@ -15,7 +17,15 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>hello world</div>;
+    return (
+      <div className='app-container'>
+        <SideBarComponent
+          selectedNoteIndex={this.state.selectedNoteIndex}
+          notes={this.state.notes}
+        />
+        <EditorComponent />
+      </div>
+    );
   }
 
   componentDidMount = () => {
@@ -29,7 +39,7 @@ class App extends React.Component {
           return data;
         });
         console.log(notes);
-        this.setState({notes: notes})
+        this.setState({ notes: notes });
       });
   };
 }
