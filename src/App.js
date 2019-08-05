@@ -13,7 +13,8 @@ class App extends React.Component {
     this.state = {
       selectedNoteIndex: null,
       selectedNote: null,
-      notes: null
+      notes: null,
+      authenticated: false
     };
   }
 
@@ -21,7 +22,7 @@ class App extends React.Component {
     return (
       <div className='app-container'>
         
-        <Header />
+        <Header authenticated = {this.state.authenticated}/>
           <div className = 'note-container'>
           <SideBarComponent
             selectedNoteIndex={this.state.selectedNoteIndex}
