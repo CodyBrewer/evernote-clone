@@ -1,9 +1,9 @@
 import React from 'react';
+import Header from './header/header'
 import SideBarComponent from './sidebar/sidebar';
 import EditorComponent from './editor/editor';
-
 import './App.css';
-import { async } from 'q';
+
 
 const firebase = require('firebase');
 
@@ -20,21 +20,25 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-container'>
-        <SideBarComponent
-          selectedNoteIndex={this.state.selectedNoteIndex}
-          notes={this.state.notes}
-          deleteNote={this.deleteNote}
-          selectNote={this.selectNote}
-          newNote={this.newNote}
-        />
-        {this.state.selectedNote ? (
-          <EditorComponent
-            selectedNote={this.state.selectedNote}
+        
+        <Header />
+          <div className = 'note-container'>
+          <SideBarComponent
             selectedNoteIndex={this.state.selectedNoteIndex}
             notes={this.state.notes}
-            noteUpdate={this.noteUpdate}
+            deleteNote={this.deleteNote}
+            selectNote={this.selectNote}
+            newNote={this.newNote}
           />
-        ) : null}
+          {this.state.selectedNote ? (
+            <EditorComponent
+              selectedNote={this.state.selectedNote}
+              selectedNoteIndex={this.state.selectedNoteIndex}
+              notes={this.state.notes}
+              noteUpdate={this.noteUpdate}
+            />
+          ) : null}
+        </div>
       </div>
     );
   }
